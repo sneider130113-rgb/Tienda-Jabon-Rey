@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi tienda</title>
+  <style>
+    :root {
+      --rojo-guayaba: #B83245;
+      --amarillo-crema: #F5DFA8;
+      --verde-natural: #526B45;
+      --marfil: #FFF9EF;
+      --marron-cacao: #493329;
+      --blanco: #FFFFFF;
+      --sombra: 0 8px 24px rgba(73, 51, 41, 0.12);
+      --transicion: all 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      background-color: var(--marfil);
+      color: var(--marron-cacao);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, .brand-name {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    /* HEADER STICKY & NAVEGACIÓN */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--marron-cacao);
+      color: var(--marfil);
+      border-bottom: 4px solid var(--amarillo-crema);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--marfil);
+    }
+
+    .logo-crown {
+      font-size: 2rem;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--amarillo-crema);
+    }
+
+    .student-badge {
+      font-size: 0.78rem;
+      background-color: var(--rojo-guayaba);
+      color: var(--blanco);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    .main-nav a {
+      color: var(--marfil);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: var(--transicion);
+    }
+
+    .main-nav a:hover {
+      color: var(--amarillo-crema);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-select {
+      background-color: rgba(255, 249, 239, 0.12);
+      color: var(--marfil);
+      border: 1px solid var(--amarillo-crema);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+
+    .lang-select option {
+      background-color: var(--marron-cacao);
+      color: var(--marfil);
+    }
+
+    .cart-trigger {
+      position: relative;
+      text-decoration: none;
+      font-size: 1.3rem;
+      background: rgba(245, 223, 168, 0.15);
+      padding: 6px 12px;
+      border-radius: 8px;
+      color: var(--amarillo-crema);
+    }
+
+    .cart-badge {
+      background-color: var(--rojo-guayaba);
+      color: var(--blanco);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 50%;
+      vertical-align: top;
+    }
+
+    .btn-header-cta {
+      background-color: var(--rojo-guayaba);
+      color: var(--blanco);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: var(--transicion);
+    }
+
+    .btn-header-cta:hover {
+      background-color: #962435;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--amarillo-crema);
+      border-radius: 3px;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      position: relative;
+      background: linear-gradient(135deg, rgba(73, 51, 41, 0.88) 0%, rgba(82, 107, 69, 0.82) 100%),
+                  url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      color: var(--marfil);
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background-color: var(--amarillo-crema);
+      color: var(--marron-cacao);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 14px;
+      color: var(--marfil);
+    }
+
+    .hero-slogan {
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--amarillo-crema);
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background-color: var(--rojo-guayaba);
+      color: var(--blanco);
+      padding: 13px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: var(--transicion);
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background-color: #942232;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--amarillo-crema);
+      border: 2px solid var(--amarillo-crema);
+      padding: 11px 26px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: var(--transicion);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--amarillo-crema);
+      color: var(--marron-cacao);
+    }
+
+    /* BENEFICIOS */
+    .benefits-bar {
+      background-color: var(--verde-natural);
+      color: var(--marfil);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 25px 30px;
+      max-width: 1280px;
+      margin: -30px auto 25px;
+      border-radius: 12px;
+      box-shadow: var(--sombra);
+      position: relative;
+      z-index: 10;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .benefit-icon {
+      font-size: 2rem;
+      background: rgba(245, 223, 168, 0.2);
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .benefit-item strong {
+      display: block;
+      color: var(--amarillo-crema);
+      font-size: 0.95rem;
+    }
+
+    .benefit-item p {
+      font-size: 0.82rem;
+      opacity: 0.9;
+    }
+
+    /* PROMO BANNER */
+    .promo-banner {
+      background-color: var(--amarillo-crema);
+      color: var(--marron-cacao);
+      text-align: center;
+      padding: 12px 20px;
+      font-size: 0.92rem;
+      border-top: 2px solid var(--rojo-guayaba);
+      border-bottom: 2px solid var(--rojo-guayaba);
+    }
+
+    /* PRODUCTO DESTACADO */
+    .featured-section {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .featured-card {
+      background: var(--blanco);
+      border: 2px solid var(--amarillo-crema);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: var(--sombra);
+      position: relative;
+    }
+
+    .featured-badge {
+      display: inline-block;
+      background-color: var(--rojo-guayaba);
+      color: var(--blanco);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .featured-img {
+      width: 100%;
+      height: 290px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 3px solid var(--verde-natural);
+    }
+
+    .featured-info h2 {
+      font-size: 1.9rem;
+      color: var(--marron-cacao);
+      margin-bottom: 12px;
+    }
+
+    .featured-list {
+      list-style: none;
+      margin: 15px 0 22px;
+    }
+
+    .featured-list li {
+      margin-bottom: 6px;
+      color: var(--verde-natural);
+      font-weight: 600;
+    }
+
+    /* LAYOUT DE TIENDA (CATÁLOGO + CARRITO) */
+    .store-layout {
+      max-width: 1280px;
+      margin: 50px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 370px;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sub-label {
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--rojo-guayaba);
+    }
+
+    .section-header h2 {
+      font-size: 2.1rem;
+      color: var(--marron-cacao);
+      margin: 5px 0 10px;
+    }
+
+    #productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 22px;
+    }
+
+    .producto {
+      background: var(--blanco);
+      border-radius: 14px;
+      border: 1px solid #e6dac3;
+      overflow: hidden;
+      box-shadow: var(--sombra);
+      transition: var(--transicion);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .producto:hover {
+      transform: translateY(-6px);
+      border-color: var(--rojo-guayaba);
+    }
+
+    .prod-img-wrap {
+      position: relative;
+    }
+
+    .producto img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--amarillo-crema);
+    }
+
+    .prod-origin-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(73, 51, 41, 0.85);
+      color: var(--amarillo-crema);
+      font-size: 0.72rem;
+      padding: 3px 9px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .producto-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .producto h3 {
+      font-size: 1.15rem;
+      color: var(--marron-cacao);
+      margin-bottom: 8px;
+    }
+
+    .producto-desc {
+      font-size: 0.86rem;
+      color: #6b5344;
+      margin-bottom: 14px;
+    }
+
+    .editable-price-box {
+      background-color: var(--marfil);
+      border: 1px dashed var(--verde-natural);
+      padding: 8px 10px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .editable-price-box label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--verde-natural);
+    }
+
+    .price-input {
+      width: 85px;
+      padding: 5px 8px;
+      border: 1px solid var(--marron-cacao);
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--rojo-guayaba);
+      text-align: right;
+      background: var(--blanco);
+    }
+
+    .btn-add-cart {
+      width: 100%;
+      background-color: var(--verde-natural);
+      color: var(--blanco);
+      border: none;
+      padding: 11px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transicion);
+    }
+
+    .btn-add-cart:hover {
+      background-color: var(--rojo-guayaba);
+    }
+
+    /* CARRITO ESTILIZADO */
+    .carrito {
+      background: var(--blanco);
+      border: 2px solid var(--marron-cacao);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: var(--sombra);
+      position: sticky;
+      top: 90px;
+    }
+
+    .carrito-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--amarillo-crema);
+      padding-bottom: 12px;
+      margin-bottom: 15px;
+    }
+
+    .items-pill {
+      background: var(--amarillo-crema);
+      color: var(--marron-cacao);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    #lista-carrito {
+      list-style: none;
+      max-height: 290px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0e6d2;
+      font-size: 0.88rem;
+    }
+
+    .qty-badge {
+      background-color: var(--verde-natural);
+      color: var(--blanco);
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-weight: 700;
+      margin-right: 6px;
+    }
+
+    .btn-remove {
+      background: none;
+      border: none;
+      color: var(--rojo-guayaba);
+      font-weight: 800;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    .envio-progress {
+      background: var(--marfil);
+      color: var(--verde-natural);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 8px;
+      border-radius: 6px;
+      text-align: center;
+      margin-bottom: 12px;
+      border: 1px solid var(--amarillo-crema);
+    }
+
+    .total-row {
+      font-size: 1.3rem;
+      text-align: right;
+      color: var(--marron-cacao);
+      margin-bottom: 15px;
+    }
+
+    .btn-checkout {
+      width: 100%;
+      background-color: var(--rojo-guayaba);
+      color: var(--blanco);
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      cursor: pointer;
+      margin-bottom: 8px;
+      transition: var(--transicion);
+    }
+
+    .btn-checkout:hover {
+      background-color: #912131;
+    }
+
+    .btn-clear {
+      width: 100%;
+      background-color: var(--amarillo-crema);
+      color: var(--marron-cacao);
+      border: none;
+      padding: 9px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* HISTORIA Y CALIDAD */
+    .story-section {
+      background-color: var(--marron-cacao);
+      color: var(--marfil);
+      padding: 65px 20px;
+      margin-top: 40px;
+    }
+
+    .story-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .story-text h2 {
+      color: var(--amarillo-crema);
+      font-size: 2rem;
+      margin: 8px 0 16px;
+    }
+
+    .story-text p {
+      margin-bottom: 14px;
+    }
+
+    .quality-box {
+      background: rgba(255, 249, 239, 0.08);
+      border: 2px solid var(--amarillo-crema);
+      padding: 25px;
+      border-radius: 14px;
+    }
+
+    .quality-box h3 {
+      color: var(--amarillo-crema);
+      margin-bottom: 15px;
+    }
+
+    .q-card {
+      background: rgba(0, 0, 0, 0.25);
+      padding: 14px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .q-card h4 {
+      color: var(--amarillo-crema);
+      margin-bottom: 4px;
+    }
+
+    /* TESTIMONIOS */
+    .testimonials-section {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    .testimonial-card {
+      background: var(--blanco);
+      padding: 24px;
+      border-radius: 12px;
+      border-top: 4px solid var(--verde-natural);
+      box-shadow: var(--sombra);
+    }
+
+    .stars {
+      color: #e6a100;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .testimonial-card p {
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    /* FAQ */
+    .faq-section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .faq-item {
+      background: var(--blanco);
+      border: 1px solid #e2d4b7;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+    }
+
+    .faq-item summary {
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--marron-cacao);
+    }
+
+    .faq-item p {
+      margin-top: 10px;
+      font-size: 0.92rem;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background-color: #2e1f18;
+      color: var(--marfil);
+      padding: 50px 20px 20px;
+      border-top: 5px solid var(--rojo-guayaba);
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto 35px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .footer-col h3, .footer-col h4 {
+      color: var(--amarillo-crema);
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-col a {
+      color: var(--marfil);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer-col a:hover {
+      color: var(--amarillo-crema);
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid rgba(245, 223, 168, 0.2);
+      padding-top: 18px;
+      font-size: 0.85rem;
+    }
+
+    /* RESPONSIVE MOBILE-FIRST ADAPTATIONS */
+    @media (max-width: 920px) {
+      .store-layout, .featured-grid, .story-container {
+        grid-template-columns: 1fr;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--marron-cacao);
+        flex-direction: column;
+        padding: 20px;
+        border-bottom: 3px solid var(--amarillo-crema);
+      }
+      .main-nav.open {
+        display: flex;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- HEADER STICKY -->
+  <header class="site-header" id="top">
+    <div class="header-container">
+      <a href="#inicio" class="logo">
+        <span class="logo-crown">👑</span>
+        <div class="logo-text">
+          <span class="brand-name">REY IBÉRICA</span>
+          <span class="student-badge">Tienda de Brandon Ramírez</span>
+        </div>
+      </a>
+
+      <button class="hamburger" id="btn-hamburger" aria-label="Abrir menú" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav" id="main-nav">
+        <a href="#inicio" data-i18n="nav_inicio" onclick="closeMenu()">Inicio</a>
+        <a href="#catalogo" data-i18n="nav_productos" onclick="closeMenu()">Productos</a>
+        <a href="#historia" data-i18n="nav_historia" onclick="closeMenu()">Nuestra historia</a>
+        <a href="#calidad" data-i18n="nav_calidad" onclick="closeMenu()">Calidad</a>
+        <a href="#faq" data-i18n="nav_faq" onclick="closeMenu()">FAQ</a>
+        <a href="#contacto" data-i18n="nav_contacto" onclick="closeMenu()">Contacto</a>
+      </nav>
+
+      <div class="header-actions">
+        <select id="lang-selector" class="lang-select" onchange="cambiarIdioma(this.value)" aria-label="Selector de idioma">
+          <option value="es_ES">🇪🇸 Español (España)</option>
+          <option value="es_CO">🇨🇴 Español (Colombia)</option>
+          <option value="en">🇬🇧 English (EU)</option>
+        </select>
+
+        <a href="#carrito-sec" class="cart-trigger" title="Ver Carrito">
+          🛒 <span id="contador-carrito" class="cart-badge">0</span>
+        </a>
+
+        <a href="#catalogo" class="btn-header-cta" data-i18n="btn_comprar_header">Comprar ahora</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="inicio">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-tag" data-i18n="hero_tag">🇨🇴 Exportación Oficial Colombia ➔ España 🇪🇸</span>
+      <h1 data-i18n="hero_title">El Poder Auténtico de Colombia en España</h1>
+      <p class="hero-slogan" data-i18n="hero_slogan">"Un pedacito de tradición y pureza colombiana en cada lavado"</p>
+      <div class="hero-buttons">
+        <a href="#catalogo" class="btn-primary" data-i18n="hero_btn_cat">Explorar Catálogo</a>
+        <a href="#historia" class="btn-secondary" data-i18n="hero_btn_hist">Conocer Tradición</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BARRA DE BENEFICIOS -->
+  <section class="benefits-bar">
+    <div class="benefit-item">
+      <span class="benefit-icon">🚚</span>
+      <div>
+        <strong data-i18n="ben_1_title">Envío Express 24/48h</strong>
+        <p data-i18n="ben_1_desc">Madrid, Barcelona, Valencia y toda España</p>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">🌿</span>
+      <div>
+        <strong data-i18n="ben_2_title">Fórmula Natural Biodegradable</strong>
+        <p data-i18n="ben_2_desc">Sin fosfatos, cuida tus prendas y la piel</p>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">💶</span>
+      <div>
+        <strong data-i18n="ben_3_title">Precios Editables en Euros (€)</strong>
+        <p data-i18n="ben_3_desc">Ajusta tarifas B2B o B2C en tiempo real</p>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">🔒</span>
+      <div>
+        <strong data-i18n="ben_4_title">Garantía Europea</strong>
+        <p data-i18n="ben_4_desc">Pago 100% seguro con Bizum, Tarjeta o PayPal</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER PROMOCIONES -->
+  <section class="promo-banner">
+    <p data-i18n="promo_text">🔥 <strong>PROMOCIÓN ESPECIAL ESPAÑA:</strong> Envío GRATIS en pedidos superiores a 25,00 € hacia cualquier provincia peninsular. ¡Personaliza los precios en el catálogo si eres distribuidor!</p>
+  </section>
+
+  <!-- PRODUCTO DESTACADO -->
+  <section class="featured-section">
+    <div class="featured-card">
+      <div class="featured-badge" data-i18n="feat_badge">⭐ Producto Estrella en Madrid y Barcelona</div>
+      <div class="featured-grid">
+        <img src="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?auto=format&fit=crop&w=700&q=80" alt="Jabón Rey Tradicional Colombiano" class="featured-img">
+        <div class="featured-info">
+          <h2 data-i18n="feat_title">Jabón Rey Azul Tradicional (300g)</h2>
+          <p data-i18n="feat_desc">El icónico jabón colombiano que ha conquistado los hogares españoles. Su fórmula ancestral multiusos desmancha cuellos, puños, zapatillas blancas, utensilios de cocina e incluso es famoso por su cuidado capilar y energético en los hogares latinos y europeos.</p>
+          <ul class="featured-list">
+            <li data-i18n="feat_li1">✔ Rendimiento superior: equivale a 3 lavados industriales.</li>
+            <li data-i18n="feat_li2">✔ Brillo incomparable en ropa blanca y tejidos delicados.</li>
+            <li data-i18n="feat_li3">✔ Importado directamente desde Bogotá con sello de calidad.</li>
+          </ul>
+          <a href="#catalogo" class="btn-primary" data-i18n="feat_btn">Ver en el Catálogo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATÁLOGO + CARRITO (MANTIENE IDS ORIGINALES DEL PROFESOR) -->
+  <main class="store-layout" id="catalogo">
+    <section class="catalog-column">
+      <div class="section-header">
+        <span class="sub-label" data-i18n="cat_sub">Calidad de Exportación</span>
+        <h2 data-i18n="cat_title">Catálogo Oficial Jabón Rey España</h2>
+        <p data-i18n="cat_desc">Puedes editar el precio en Euros (€) directamente en cada tarjeta para simular compras mayoristas o minoristas.</p>
+      </div>
+
+      <!-- Contenedor original requerido por la base -->
+      <div id="productos"></div>
+    </section>
+
+    <!-- Carrito original mejorado -->
+    <aside class="carrito" id="carrito-sec">
+      <div class="carrito-header">
+        <h2 data-i18n="cart_title">🛒 Tu Carrito</h2>
+        <span class="items-pill"><span id="resumen-unidades">0</span> uds</span>
+      </div>
+      <ul id="lista-carrito"></ul>
+
+      <div class="carrito-footer">
+        <div class="envio-progress" id="envio-status">Faltan €25.00 para envío gratis en España</div>
+        <p class="total-row"><strong data-i18n="cart_total">Total: €<span id="total">0.00</span></strong></p>
+        <button class="btn-checkout" onclick="finalizarCompra()" data-i18n="btn_finalizar">✅ Finalizar compra</button>
+        <button class="btn-clear" onclick="vaciarCarrito()" data-i18n="btn_vaciar">🗑️ Vaciar carrito</button>
+      </div>
+    </aside>
+  </main>
+
+  <!-- NUESTRA HISTORIA Y CALIDAD ARTESANAL -->
+  <section class="story-section" id="historia">
+    <div class="story-container">
+      <div class="story-text">
+        <span class="sub-label" data-i18n="hist_sub">Desde Colombia hasta la Península Ibérica</span>
+        <h2 data-i18n="hist_title">Nuestra Historia: Más de 60 Años Reinando en el Hogar</h2>
+        <p data-i18n="hist_p1">Nacido en el corazón de Colombia, el Jabón Rey se convirtió en un símbolo cultural indispensable. No hay hogar colombiano que no conozca su inconfundible color azul y su aroma a limpio puro.</p>
+        <p data-i18n="hist_p2">Hoy, a través de <strong>Rey Ibérica (Tienda de Brandon Ramírez)</strong>, conectamos esa tradición con miles de familias en España que buscan una limpieza ecológica, potente y libre de químicos abrasivos modernos.</p>
+      </div>
+      <div class="quality-box" id="calidad">
+        <h3 data-i18n="qual_title">✨ Sello de Calidad Artesanal y Ecológica</h3>
+        <div class="quality-items">
+          <div class="q-card">
+            <h4>100% Tradición</h4>
+            <p>Elaborado bajo procesos de saponificación controlada que conservan la glicerina natural protectora de las manos.</p>
+          </div>
+          <div class="q-card">
+            <h4>Ecológico en Europa</h4>
+            <p>Empaque reciclable y barra sólida cero plástico, alineado con las normativas de sostenibilidad de la Unión Europea.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="testimonials-section">
+    <div class="section-header">
+      <span class="sub-label">Clientes Reales en España</span>
+      <h2 data-i18n="test_title">Lo que dicen en Madrid, Barcelona y Sevilla</h2>
+    </div>
+    <div class="testimonials-grid">
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Llevaba años en Madrid buscando el auténtico Jabón Rey para dejar las camisas del trabajo impecables. El envío llegó en 24 horas y el pack con aroma a coco huele brutal."</p>
+        <strong>— Carmen Rodríguez (Madrid, España)</strong>
+      </article>
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Soy española y una amiga colombiana me recomendó el Jabón Rey Gourmet y el de Cacao. No solo quita manchas imposibles de los manteles, sino que deja las manos súper suaves."</p>
+        <strong>— Lucía Fernández (Barcelona, España)</strong>
+      </article>
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Compré para mi tienda latina en Valencia ajustando el precio mayorista. Mis clientes están felices de tener el Rey original en euros sin pagar sobrecostos de aduana."</p>
+        <strong>— Andrés Morales (Valencia, España)</strong>
+      </article>
+    </div>
+  </section>
+
+  <!-- PREGUNTAS FRECUENTES (FAQ) -->
+  <section class="faq-section" id="faq">
+    <div class="section-header">
+      <span class="sub-label">Resolvemos tus dudas</span>
+      <h2 data-i18n="faq_title">Preguntas Frecuentes (Envíos a España)</h2>
+    </div>
+    <div class="faq-container">
+      <details class="faq-item" open>
+        <summary>¿Cuánto tarda el envío dentro de España peninsular y Baleares?</summary>
+        <p>Todos nuestros pedidos se despachan desde nuestro centro logístico en Madrid. En la península entregamos entre 24 y 48 horas hábiles mediante Correos Express o SEUR.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Cómo funciona el precio editable en Euros (€) del catálogo?</summary>
+        <p>Puedes modificar el valor numérico directamente en el recuadro de precio de cada producto antes de darle a "Agregar". Así puedes cotizar descuentos por volumen o precios personalizados al instante.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿El Jabón Rey sirve para lavadoras europeas?</summary>
+        <p>¡Sí! Puedes frotar la prenda directamente antes del ciclo de lavado o rallar una pequeña porción en el tambor para potenciar el blanco sin dañar los tejidos.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- FOOTER COMPLETO -->
+  <footer class="site-footer" id="contacto">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>👑 REY IBÉRICA</h3>
+        <p><strong>Proyecto E-Commerce Internacional</strong><br>Creado por: <strong>Brandon Ramírez</strong></p>
+        <p>Importador oficial de la tradición colombiana del Jabón Rey para todo el mercado español y europeo.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto en España</h4>
+        <p>📍 Calle Gran Vía 42, 28013 Madrid, España</p>
+        <p>📍 Origen: Bogotá, Colombia 🇨🇴</p>
+        <p>📞 +34 910 123 456</p>
+        <p>✉️ contacto@reyiberica.es</p>
+      </div>
+      <div class="footer-col">
+        <h4>Políticas de Compra</h4>
+        <ul>
+          <li><a href="#faq">Envíos y Devoluciones (UE)</a></li>
+          <li><a href="#catalogo">Garantía de Satisfacción 30 días</a></li>
+          <li><a href="#top">Aviso Legal y Privacidad RGPD</a></li>
+          <li><a href="#catalogo">Ventas Mayoristas B2B España</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Síguenos en Redes</h4>
+        <div class="social-links">
+          <a href="#contacto" aria-label="Instagram">📸 Instagram</a>
+          <a href="#contacto" aria-label="TikTok">🎵 TikTok</a>
+          <a href="#contacto" aria-label="Facebook">📘 Facebook</a>
+          <a href="#contacto" aria-label="WhatsApp">💬 WhatsApp España</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Tienda de Brandon Ramírez — Marketing Internacional (Exportación Jabón Rey a España). Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Catálogo de los 5 productos de Jabón Rey para España con precio editable en Euros
+    const productos = [
+      {
+        id: 1,
+        nombre: "Jabón Rey Tradicional Colombiano",
+        descripcion: "La legendaria barra azul de 300g. Desmanchador multiusos para ropa blanca, hogar y cuidado tradicional.",
+        precio: 2.90,
+        origen: "🇨🇴 Clásico Bogotá",
+        imagen: "https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 2,
+        nombre: "Jabón Rey con Avena y Karité",
+        descripcion: "Fórmula suave enriquecida para lavado a mano de prendas delicadas en aguas duras de España.",
+        precio: 3.50,
+        origen: "🌿 Piel Sensible",
+        imagen: "https://images.unsplash.com/photo-1607006344380-b6775a0824a7?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 3,
+        nombre: "Jabón Rey con Extracto de Coco",
+        descripcion: "Poder blanqueador tropical con aroma fresco a coco natural colombiano. Ideal para ropa de cama.",
+        precio: 3.80,
+        origen: "🥥 Aroma Tropical",
+        imagen: "https://images.unsplash.com/photo-1546552768-9e3a94b38a59?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 4,
+        nombre: "Jabón Rey con Cacao Orgánico",
+        descripcion: "Edición antioxidante con manteca de cacao colombiano que protege las fibras textiles y tus manos.",
+        precio: 4.20,
+        origen: "🍫 Línea Cacao",
+        imagen: "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 5,
+        nombre: "Caja Jabón Rey Gourmet Reserva (Pack x6)",
+        descripcion: "Estuche de exportación para familias en España: incluye las 4 variedades + cepillo de madera natural.",
+        precio: 18.90,
+        origen: "👑 Edición Especial España",
+        imagen: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80"
+      }
+    ];
+
+    let carrito = [];
+
+    // Mostrar catálogo con input de precio editable en Euros
+    function mostrarProductos() {
+      const cont = document.getElementById("productos");
+      cont.innerHTML = productos.map(p => `
+        <article class="producto">
+          <div class="prod-img-wrap">
+            <span class="prod-origin-tag">${p.origen}</span>
+            <img src="${p.imagen}" alt="${p.nombre}" loading="lazy">
+          </div>
+          <div class="producto-body">
+            <div>
+              <h3>${p.nombre}</h3>
+              <p class="producto-desc">${p.descripcion}</p>
+            </div>
+            <div>
+              <div class="editable-price-box">
+                <label for="precio-${p.id}">Precio (€ EUR):</label>
+                <input 
+                  type="number" 
+                  id="precio-${p.id}" 
+                  class="price-input" 
+                  value="${p.precio.toFixed(2)}" 
+                  min="0.50" 
+                  step="0.10"
+                  onchange="actualizarPrecioProducto(${p.id}, this.value)"
+                >
+              </div>
+              <button class="btn-add-cart" onclick="agregar(${p.id})">🛒 Agregar al carrito</button>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    // Permite editar el precio en Euros en vivo y actualiza el carrito si ya estaba agregado
+    function actualizarPrecioProducto(id, nuevoValor) {
+      const prod = productos.find(p => p.id === id);
+      const precioNum = parseFloat(nuevoValor);
+
+      if (!isNaN(precioNum) && precioNum > 0) {
+        prod.precio = precioNum;
+        // Si el producto ya está en el carrito, actualiza su precio también
+        const itemEnCarrito = carrito.find(i => i.id === id);
+        if (itemEnCarrito) {
+          itemEnCarrito.precio = precioNum;
+          actualizarCarrito();
+        }
+      }
+    }
+
+    // Agrega productos agrupando repetidos
+    function agregar(id) {
+      const prod = productos.find(p => p.id === id);
+      const inputPrecio = document.getElementById(`precio-${id}`);
+      if (inputPrecio) {
+        const val = parseFloat(inputPrecio.value);
+        if (!isNaN(val) && val > 0) prod.precio = val;
+      }
+
+      const existente = carrito.find(item => item.id === id);
+      if (existente) {
+        existente.cantidad += 1;
+        existente.precio = prod.precio;
+      } else {
+        carrito.push({ ...prod, cantidad: 1 });
+      }
+      actualizarCarrito();
+    }
+
+    function eliminarDelCarrito(id) {
+      carrito = carrito.filter(item => item.id !== id);
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      const lista = document.getElementById("lista-carrito");
+      const totalSpan = document.getElementById("total");
+      const contadorHeader = document.getElementById("contador-carrito");
+      const resumenUnidades = document.getElementById("resumen-unidades");
+      const envioStatus = document.getElementById("envio-status");
+
+      if (carrito.length === 0) {
+        lista.innerHTML = `<li style="text-align:center; color:#8c7365; padding:18px 0;">Tu carrito para España está vacío</li>`;
+      } else {
+        lista.innerHTML = carrito.map(item => `
+          <li class="cart-item">
+            <div>
+              <span class="qty-badge">${item.cantidad}x</span>
+              <strong>${item.nombre}</strong>
+            </div>
+            <div>
+              <span>€${(item.precio * item.cantidad).toFixed(2)}</span>
+              <button class="btn-remove" onclick="eliminarDelCarrito(${item.id})" title="Quitar">✕</button>
+            </div>
+          </li>
+        `).join("");
+      }
+
+      const totalEuros = carrito.reduce((acc, item) => acc + (item.precio * item.cantidad), 0);
+      const totalUnidades = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+
+      totalSpan.textContent = totalEuros.toFixed(2);
+      if (contadorHeader) contadorHeader.textContent = totalUnidades;
+      if (resumenUnidades) resumenUnidades.textContent = totalUnidades;
+
+      if (envioStatus) {
+        if (totalEuros >= 25) {
+          envioStatus.innerHTML = "🎉 ¡Tienes <strong>ENVÍO GRATIS</strong> a cualquier ciudad de España!";
+          envioStatus.style.backgroundColor = "#e6f4ea";
+        } else {
+          const falta = (25 - totalEuros).toFixed(2);
+          envioStatus.innerHTML = `🚚 Te faltan <strong>€${falta}</strong> para envío gratis en España`;
+          envioStatus.style.backgroundColor = "#FFF9EF";
+        }
+      }
+    }
+
+    function vaciarCarrito() {
+      if (carrito.length === 0) {
+        alert("ℹ️ El carrito ya está vacío.");
+        return;
+      }
+      carrito = [];
+      actualizarCarrito();
+      alert("🗑️ Has vaciado tu carrito de exportación correctamente.");
+    }
+
+    function finalizarCompra() {
+      if (carrito.length === 0) {
+        alert("⚠️ Agrega al menos un Jabón Rey al carrito para procesar tu envío a España.");
+        return;
+      }
+      const totalEuros = carrito.reduce((acc, item) => acc + (item.precio * item.cantidad), 0);
+      const totalUnidades = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+
+      alert(
+        `👑 ¡Pedido Confirmado en REY IBÉRICA (Tienda de Brandon Ramírez)!\n\n` +
+        `📦 Unidades totales: ${totalUnidades}\n` +
+        `💶 Total facturado: €${totalEuros.toFixed(2)} EUR\n` +
+        `🇪🇸 Destino: Envío Express 24/48h España Peninsular\n\n` +
+        `¡Gracias por llevar la tradición colombiana a tu hogar en España!`
+      );
+      carrito = [];
+      actualizarCarrito();
+    }
+
+    // Menú hamburguesa móvil
+    function toggleMenu() {
+      const nav = document.getElementById("main-nav");
+      nav.classList.toggle("open");
+    }
+
+    function closeMenu() {
+      const nav = document.getElementById("main-nav");
+      nav.classList.remove("open");
+    }
+
+    // Diccionario de idiomas (Español España / Español Colombia / Inglés Europeo)
+    const traducciones = {
+      es_ES: {
+        nav_inicio: "Inicio",
+        nav_productos: "Productos",
+        nav_historia: "Nuestra historia",
+        nav_calidad: "Calidad",
+        nav_faq: "FAQ",
+        nav_contacto: "Contacto",
+        btn_comprar_header: "Comprar ahora",
+        hero_tag: "🇨🇴 Exportación Oficial Colombia ➔ España 🇪🇸",
+        hero_title: "El Poder Auténtico de Colombia en España",
+        hero_slogan: "\"Un pedacito de tradición y pureza colombiana en cada colada\"",
+        hero_btn_cat: "Ver Catálogo en Euros",
+        hero_btn_hist: "Conocer Tradición",
+        cat_title: "Catálogo Oficial Jabón Rey España",
+        btn_finalizar: "✅ Finalizar pedido en España",
+        btn_vaciar: "🗑️ Vaciar cesta"
+      },
+      es_CO: {
+        nav_inicio: "Inicio",
+        nav_productos: "Catálogo",
+        nav_historia: "Nuestra Historia",
+        nav_calidad: "Sello Artesanal",
+        nav_faq: "Preguntas",
+        nav_contacto: "Contacto",
+        btn_comprar_header: "¡Pide el tuyo!",
+        hero_tag: "🇨🇴 Orgullo Colombiano conquistando España 🇪🇸",
+        hero_title: "El Verdadero Jabón Rey Colombiano en España",
+        hero_slogan: "\"Un pedacito de nuestra tierra colombiana en cada lavada\"",
+        hero_btn_cat: "Antójate del Catálogo",
+        hero_btn_hist: "Nuestra Historia",
+        cat_title: "Catálogo Jabón Rey para Colombianos en España",
+        btn_finalizar: "✅ Confirmar compra",
+        btn_vaciar: "🗑️ Vaciar carrito"
+      },
+      en: {
+        nav_inicio: "Home",
+        nav_productos: "Products",
+        nav_historia: "Our Story",
+        nav_calidad: "Quality",
+        nav_faq: "FAQ",
+        nav_contacto: "Contact",
+        btn_comprar_header: "Shop Now",
+        hero_tag: "🇨🇴 Official Export Colombia ➔ Spain 🇪🇸",
+        hero_title: "The Authentic Power of Colombia in Spain",
+        hero_slogan: "\"A little piece of Colombian tradition in every wash\"",
+        hero_btn_cat: "Explore Catalog (€)",
+        hero_btn_hist: "Our Heritage",
+        cat_title: "Official Jabón Rey Spain Catalog",
+        btn_finalizar: "✅ Complete Order",
+        btn_vaciar: "🗑️ Empty Cart"
+      }
+    };
+
+    function cambiarIdioma(lang) {
+      const textos = traducciones[lang];
+      if (!textos) return;
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const clave = el.getAttribute("data-i18n");
+        if (textos[clave]) {
+          el.textContent = textos[clave];
+        }
+      });
+    }
+
+    // Inicializar aplicación
+    mostrarProductos();
+    actualizarCarrito();
+  </script>
+</body>
+</html>
